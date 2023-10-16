@@ -9,7 +9,7 @@ const registerUser =  asyncHandler(async(req, res) => {
     const {username, email, password} = req.body;
     if(!username|| !email || !password){
         res.status(400)
-        throw new Error("All fields are mandotory");
+        throw new Error("user not found");
     }
     const userAvaiabale = await User.findOne({email});
     if(userAvaiabale){
@@ -30,7 +30,7 @@ const registerUser =  asyncHandler(async(req, res) => {
     res.status(201).json({_id: user.id, email: user.email});
   }else {
     res.status(400);
-    throw new Error("User data not founhd");
+    throw new Error("User data not found");
   }
   res.json({message : "Request the user"})
 });
